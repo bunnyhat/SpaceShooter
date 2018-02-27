@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8f4b5ac6f80aa4abac0c2aff64370b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 90
+  moveSpeed: 4
   currentHP: 100
   maxHP: 100
   isDead: 0
@@ -208,8 +208,9 @@ MonoBehaviour:
   - {fileID: 21300006, guid: b939e8fa0cf72e44b8b868fe42eb8b6f, type: 3}
   beamPrefab: {fileID: 1283574203631168, guid: a308faf367c643c4591398e74cc62834, type: 2}
   beamSpawner: {fileID: 4868366934877342}
-  fireRate: 0.5
+  fireRate: 30
   currencyGained: 0
+  boundY: 452.5
 --- !u!114 &114326975167700866
 MonoBehaviour:
   m_ObjectHideFlags: 1

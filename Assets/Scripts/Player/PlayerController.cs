@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate;
 
 	public float currencyGained;
-	private bool canFire = false;
+	private bool canFire = true;
+
+	public float boundY;
+	private Vector3 target;
 
 	Rigidbody2D m_rigidbody;
 	Animator m_animator;
@@ -36,7 +39,13 @@ public class PlayerController : MonoBehaviour {
 		if(currentHP <= 0) { isDead = true; }
 
 		if(!isDead) {
+			m_rigidbody.velocity = Vector2.zero;
+			if(m_rigidbody.velocity == Vector2.zero) {
+				canFire = true;
+			}
+
 			if(Input.GetKeyDown(KeyCode.A)) {
+				canFire = false;
 				if(transform.position.x == -2) {
 					transform.position = new Vector2(-2, transform.position.y);
 				} else if(transform.position.x == 0) {
@@ -46,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			if(Input.GetKeyDown(KeyCode.D)) {
+				canFire = false;
 				if(transform.position.x == 2) {
 					transform.position = new Vector2(2, transform.position.y);
 				} else if(transform.position.x == 0) {
@@ -59,17 +69,23 @@ public class PlayerController : MonoBehaviour {
 				SwitchShips();
 			}
 
-			float nextFire = 0;
-			if(Input.GetMouseButtonDown(0) && Time.time > nextFire) {
-				nextFire = Time.time + fireRate;
-				GameObject beamClone = Instantiate(beamPrefab, beamSpawner.position, beamSpawner.rotation);
+			fireRate -= 1;
+			if(canFire == true && fireRate <= 0) {
+				GameObject beamClone = Instantiate(beamPrefab, this.transform.position, beamSpawner.rotation);
+				fireRate = 30;
 			}
 		} else {
 			//Player died - KA BOOM!
 			m_rigidbody.velocity = Vector2.zero;
+			canFire = false;
 		}
 		
 	}
+
+	
+	void OnGUI() {
+        GUI.Box(new Rect(0, boundY, Screen.width, Screen.height / 3.5f), "This is a box");
+    }
 
 	void SwitchShips() {
 		switch(shipColor) {
@@ -97,7 +113,6 @@ public class PlayerController : MonoBehaviour {
 				break;
 		}
 	}
-
 
 	void OnTriggerEnter2D(Collider2D other) {
 		m_collectibleController = GameObject.FindGameObjectWithTag("Collectible").GetComponent<CollectibleController>();
