@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
 	CollectibleController m_collectibleController;
 
 	void Start () {
-		m_collectibleController = GameObject.FindGameObjectWithTag("Collectible").GetComponent<CollectibleController>();
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_animator = GetComponent<Animator>();
 
@@ -101,6 +100,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D other) {
+		m_collectibleController = GameObject.FindGameObjectWithTag("Collectible").GetComponent<CollectibleController>();
 		if(other.gameObject.name == "CurrencyR" && shipColor == "Red") {
 			m_collectibleController.isCollected = true;
 			currencyGained += m_collectibleController.currencyAmount;
