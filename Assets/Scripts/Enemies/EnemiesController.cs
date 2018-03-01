@@ -15,14 +15,49 @@ public enum ENEMY_TYPE {
 public class EnemiesController : MonoBehaviour {
 
 	[SerializeField] public ENEMY_TYPE enemyType;
+	public SpriteRenderer basicEnemy;
+	public SpriteRenderer[] shellCount;
+	public string shipName;
 
-	// Use this for initialization
-	void Start () {
-		
+	private float randEnemyColor;
+	private string shellColor;
+
+	void Awake() {
+		randEnemyColor = Random.Range(0, 4);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void Update() {
+		for(int i = 0; i < shellCount.Length; i++) {
+			if(shellColor == "Red") { shellCount[i].color = Color.red; }
+			else if(shellColor == "Green") { shellCount[i].color = Color.green; }
+			else if(shellColor == "Blue") { shellCount[i].color = Color.blue; }
+			else if(shellColor == "Yellow") { shellCount[i].color = Color.yellow; }
+		}
+
+		switch(enemyType) {
+			case ENEMY_TYPE.BASIC:
+				if(randEnemyColor == 0) {
+					basicEnemy.color = Color.red;
+					shellColor = "Red";
+					shipName = "BasicRed";
+				}
+				if(randEnemyColor == 1) {
+					basicEnemy.color = Color.green;
+					shellColor = "Green";
+					shipName = "BasicGreen";
+				}
+				if(randEnemyColor == 2) {
+					basicEnemy.color = Color.blue;
+					shellColor = "Blue";
+					shipName = "BasicBlue";
+				}
+				if(randEnemyColor == 3) {
+					basicEnemy.color = Color.yellow;
+					shellColor = "Yellow";
+					shipName = "BasicYellow";
+				}
+				break;
+		}
 	}
+
 }

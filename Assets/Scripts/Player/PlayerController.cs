@@ -16,23 +16,19 @@ public class PlayerController : MonoBehaviour {
 	public Transform beamSpawner;
 	public float fireRate;
 
-	public float currencyGained;
 	private bool canFire = true;
 
-	public float boundY;
 	private Vector3 target;
 
 	Rigidbody2D m_rigidbody;
 	Animator m_animator;
-	CollectibleController m_collectibleController;
 
-	void Start () {
+	void Awake () {
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_animator = GetComponent<Animator>();
 
 		maxHP = currentHP = 100;
 		shipColor = "Red";
-		currencyGained = 0;
 	}
 	
 	void Update () {
@@ -79,13 +75,7 @@ public class PlayerController : MonoBehaviour {
 			m_rigidbody.velocity = Vector2.zero;
 			canFire = false;
 		}
-		
 	}
-
-	
-	void OnGUI() {
-        GUI.Box(new Rect(0, boundY, Screen.width, Screen.height / 3.5f), "This is a box");
-    }
 
 	void SwitchShips() {
 		switch(shipColor) {
@@ -115,27 +105,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		m_collectibleController = GameObject.FindGameObjectWithTag("Collectible").GetComponent<CollectibleController>();
-		if(other.gameObject.name == "CurrencyR" && shipColor == "Red") {
-			m_collectibleController.isCollected = true;
-			currencyGained += m_collectibleController.currencyAmount;
-			Debug.Log("currency: " + currencyGained);
-		}
-		if(other.gameObject.name == "CurrencyG" && shipColor == "Green") {
-			m_collectibleController.isCollected = true;
-			currencyGained += m_collectibleController.currencyAmount;
-			Debug.Log("currency: " + currencyGained);
-		}
-		if(other.gameObject.name == "CurrencyB" && shipColor == "Blue") {
-			m_collectibleController.isCollected = true;
-			currencyGained += m_collectibleController.currencyAmount;
-			Debug.Log("currency: " + currencyGained);
-		}
-		if(other.gameObject.name == "CurrencyY" && shipColor == "Yellow") {
-			m_collectibleController.isCollected = true;
-			currencyGained += m_collectibleController.currencyAmount;
-			Debug.Log("currency: " + currencyGained);
-		}
+		
 	}
 
 }

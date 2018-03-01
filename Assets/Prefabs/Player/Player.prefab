@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 61655998179765796}
   - component: {fileID: 50224814072454900}
   - component: {fileID: 114109624500500740}
+  - component: {fileID: 114121321389072412}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -209,8 +210,18 @@ MonoBehaviour:
   beamPrefab: {fileID: 1283574203631168, guid: a308faf367c643c4591398e74cc62834, type: 2}
   beamSpawner: {fileID: 4868366934877342}
   fireRate: 30
+--- !u!114 &114121321389072412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497440614189658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e92b4d8d5424664a8cca5f92da98b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   currencyGained: 0
-  boundY: 452.5
 --- !u!114 &114326975167700866
 MonoBehaviour:
   m_ObjectHideFlags: 1
