@@ -6,9 +6,11 @@ public class BeamController : MonoBehaviour {
 
 	private string beamColor;
 	Animator m_animator;
+	Rigidbody2D m_rigidbody;
 
 	void Awake() {
 		m_animator = GetComponent<Animator>();
+		m_rigidbody = GetComponent<Rigidbody2D>();
 
 		PlayerController playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		if(playerController.shipColor == "Red") {
@@ -24,6 +26,20 @@ public class BeamController : MonoBehaviour {
 			m_animator.Play("BeamY");
 			beamColor = "Yellow";
 		}
+	}
+
+	void Update() {
+		PlayerController playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+		if(playerController.transform.position.x == -2) {
+			transform.position = new Vector2(-2, transform.position.y);
+		} else if(playerController.transform.position.x == 0) {
+			transform.position = new Vector2(0, transform.position.y);
+		} else if(playerController.transform.position.x == 2) {
+			transform.position = new Vector2(2, transform.position.y);
+		}
+
+		m_rigidbody.AddForce(Vector2.up * 10);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

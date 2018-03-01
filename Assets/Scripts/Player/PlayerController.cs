@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			if(Input.GetKeyDown(KeyCode.A)) {
-				canFire = false;
 				if(transform.position.x == -2) {
 					transform.position = new Vector2(-2, transform.position.y);
 				} else if(transform.position.x == 0) {
@@ -51,7 +50,6 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			if(Input.GetKeyDown(KeyCode.D)) {
-				canFire = false;
 				if(transform.position.x == 2) {
 					transform.position = new Vector2(2, transform.position.y);
 				} else if(transform.position.x == 0) {
@@ -66,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			fireRate -= 1;
-			if(canFire == true && fireRate <= 0) {
+			if(fireRate <= 0) {
 				GameObject beamClone = Instantiate(beamPrefab, this.transform.position, beamSpawner.rotation);
 				fireRate = 30;
 			}

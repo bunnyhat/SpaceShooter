@@ -273,6 +273,7 @@ MonoBehaviour:
   - {fileID: 212815486402316320}
   - {fileID: 212182742543944436}
   - {fileID: 212884902590229164}
+  shipName: 
 --- !u!212 &212042482097024356
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -394,7 +395,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7430c396b129d314685a9dfed6c01521, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
