@@ -22,7 +22,10 @@ public class EnemiesController : MonoBehaviour {
 	private float randEnemyColor;
 	private string shellColor;
 
+	Rigidbody2D m_rigidbody;
+
 	void Awake() {
+		m_rigidbody = GetComponent<Rigidbody2D>();
 		randEnemyColor = Random.Range(0, 4);
 	}
 
@@ -56,8 +59,10 @@ public class EnemiesController : MonoBehaviour {
 					shellColor = "Yellow";
 					shipName = "BasicYellow";
 				}
+				m_rigidbody.AddForce(Vector2.down * 1);
 				break;
 		}
+		
 	}
 
 }

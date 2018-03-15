@@ -5,6 +5,7 @@ using UnityEngine;
 public class BeamController : MonoBehaviour {
 
 	private string beamColor;
+	[SerializeField] private float beamSpeed;
 	Animator m_animator;
 	Rigidbody2D m_rigidbody;
 
@@ -39,7 +40,7 @@ public class BeamController : MonoBehaviour {
 			transform.position = new Vector2(2, transform.position.y);
 		}
 
-		m_rigidbody.AddForce(Vector2.up * 10);
+		m_rigidbody.AddForce(Vector2.up * beamSpeed);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
