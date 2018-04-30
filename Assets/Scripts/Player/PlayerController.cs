@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour {
 	public float currentHP, maxHP;
 	public bool isDead = false;
 	public string shipColor;
-
-	public Image shipSelectorMenu;
 	
 	public SpriteRenderer haloSprite;
 	public Sprite[] haloColor;
@@ -19,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 	public Transform beamSpawner;
 	public float fireRate;
 
-	public bool isSelectorActive = false;
 	private bool canFire = true;
 
 	private Vector3 target;
@@ -27,26 +24,25 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D m_rigidbody;
 	Animator m_animator;
 
+
 	void Awake () {
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_animator = GetComponent<Animator>();
 
 		maxHP = currentHP = 100;
 		shipColor = "Red";
-		isSelectorActive = false;
 	}
 	
 	void Update () {
-		if(currentHP <= 0) { isDead = true; }
+		if(currentHP <= 0) { 
+			isDead = true;
+			currentHP = 0;
+		}
+		if(currentHP > 100) { currentHP = 100; }
 
 		if(!isDead) {
 			m_rigidbody.velocity = Vector2.zero;
-			if(m_rigidbody.velocity == Vector2.zero) {
-				canFire = true;
-			}
-
-			if(!isSelectorActive) { shipSelectorMenu.enabled = false; }
-			else { shipSelectorMenu.enabled = true; }
+			if(m_rigidbody.velocity == Vector2.zero) { canFire = true; }
 
 			if(Input.GetKeyDown(KeyCode.A)) {
 				if(transform.position.x == -2) {
@@ -65,11 +61,6 @@ public class PlayerController : MonoBehaviour {
 				} else if(transform.position.x == -2) {
 					transform.position = new Vector2(0, transform.position.y);
 				}
-			}
-
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				if(!isSelectorActive) { isSelectorActive = true; }
-				else { isSelectorActive = false; }
 			}
 
 			fireRate -= 1;

@@ -201,7 +201,6 @@ MonoBehaviour:
   maxHP: 100
   isDead: 0
   shipColor: 
-  shipSelectorMenu: {fileID: 0}
   haloSprite: {fileID: 212228839025935362}
   haloColor:
   - {fileID: 21300000, guid: b939e8fa0cf72e44b8b868fe42eb8b6f, type: 3}

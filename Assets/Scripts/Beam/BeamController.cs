@@ -9,11 +9,16 @@ public class BeamController : MonoBehaviour {
 	Animator m_animator;
 	Rigidbody2D m_rigidbody;
 
+	PlayerController playerController;
+	EnemiesController enemyController;
+
 	void Awake() {
 		m_animator = GetComponent<Animator>();
 		m_rigidbody = GetComponent<Rigidbody2D>();
 
-		PlayerController playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemiesController>();
+
 		if(playerController.shipColor == "Red") {
 			m_animator.Play("BeamR");
 			beamColor = "Red";
@@ -30,8 +35,6 @@ public class BeamController : MonoBehaviour {
 	}
 
 	void Update() {
-		PlayerController playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
 		if(playerController.transform.position.x == -2) {
 			transform.position = new Vector2(-2, transform.position.y);
 		} else if(playerController.transform.position.x == 0) {
@@ -45,13 +48,12 @@ public class BeamController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Enemy") {
-			EnemiesController enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemiesController>();
 			if(enemyController.shipName == "BasicRed" && beamColor == "Red") {
 				//Destory shells and beams here till ship is dead
 			}
 		}
 
-		if(other.gameObject.name == "BeamContainer") {
+		if(other.gameObject.name == "BeamCollector") {
 			Destroy(this.gameObject);
 		}
 	}

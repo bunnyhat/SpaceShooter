@@ -65,4 +65,10 @@ public class EnemiesController : MonoBehaviour {
 		
 	}
 
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.name == "EnemyCollector") {
+			Destroy(this.gameObject);
+		}
+	}
+
 }
